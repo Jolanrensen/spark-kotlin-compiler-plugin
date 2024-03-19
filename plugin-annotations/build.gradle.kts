@@ -1,6 +1,6 @@
 plugins {
     java
-    kotlin("jvm") version "2.0.0-Beta4"
+    kotlin("jvm")
 }
 
 group = "org.jetbrains.kotlinx.spark.plugin"
