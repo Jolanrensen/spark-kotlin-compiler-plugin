@@ -4,7 +4,7 @@ plugins {
     java
     kotlin("jvm") version "2.0.0-Beta4"
 }
-group = "org.demiurg906.kotlin.plugin"
+group = "org.jetbrains.kotlinx.spark.plugin"
 version = "0.1"
 
 val kotlinVersion: String by project.properties
@@ -62,14 +62,16 @@ tasks.test {
 
 tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
-        useK2 = true
-        freeCompilerArgs += "-opt-in=org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi"
+        languageVersion = "2.0"
+        freeCompilerArgs = freeCompilerArgs +
+                "-opt-in=org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi" +
+                "-Xcontext-receivers"
     }
 }
 
 val generateTests by tasks.creating(JavaExec::class) {
     classpath = sourceSets.test.get().runtimeClasspath
-    mainClass.set("org.demiurg906.kotlin.plugin.GenerateTestsKt")
+    mainClass.set("org.jetbrains.kotlinx.spark.plugin.GenerateTestsKt")
 }
 
 val compileTestKotlin by tasks.getting {

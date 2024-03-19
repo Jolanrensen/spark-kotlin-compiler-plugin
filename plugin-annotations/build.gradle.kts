@@ -3,7 +3,7 @@ plugins {
     kotlin("jvm") version "2.0.0-Beta4"
 }
 
-group = "ru.itmo.kotlin.plugin"
+group = "org.jetbrains.kotlinx.spark.plugin"
 version = "0.1"
 
 val kotlinVersion: String by project.properties

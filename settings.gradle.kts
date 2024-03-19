@@ -6,6 +6,6 @@ pluginManagement {
     }
     
 }
-rootProject.name = "kotlin-compiler-course-examples"
+rootProject.name = "spark-kotlin-compiler-plugin"
 
 include("plugin-annotations")

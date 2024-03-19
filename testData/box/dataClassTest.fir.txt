@@ -1,0 +1,60 @@
+FILE: dataClassTest.kt
+    package foo.bar
+
+    public final fun box(): R|kotlin/String| {
+        lval user: R|foo/bar/User| = R|foo/bar/User.User|()
+        lval name: R|kotlin/Any!| = <getClass>(Q|foo/bar/User|).R|kotlin/jvm/java|<R|foo/bar/User|>.R|SubstitutionOverride<java/lang/Class.getMethod: R|java/lang/reflect/Method!|>|(String(name)).R|java/lang/reflect/Method.invoke|(R|<local>/user|)
+        lval age: R|kotlin/Any!| = <getClass>(Q|foo/bar/User|).R|kotlin/jvm/java|<R|foo/bar/User|>.R|SubstitutionOverride<java/lang/Class.getMethod: R|java/lang/reflect/Method!|>|(String(age)).R|java/lang/reflect/Method.invoke|(R|<local>/user|)
+        when () {
+            !=(R|<local>/name|, String(John Doe)) || !=(R|<local>/age|, Int(25)) ->  {
+                ^box String(Could not invoke functions name() and age() from Java)
+            }
+        }
+
+        try {
+            lval normalUser: R|foo/bar/NormalUser| = R|foo/bar/NormalUser.NormalUser|()
+            lval name: R|kotlin/Any!| = <getClass>(Q|foo/bar/NormalUser|).R|kotlin/jvm/java|<R|foo/bar/NormalUser|>.R|SubstitutionOverride<java/lang/Class.getMethod: R|java/lang/reflect/Method!|>|(String(name)).R|java/lang/reflect/Method.invoke|(R|<local>/user|)
+            lval age: R|kotlin/Any!| = <getClass>(Q|foo/bar/NormalUser|).R|kotlin/jvm/java|<R|foo/bar/NormalUser|>.R|SubstitutionOverride<java/lang/Class.getMethod: R|java/lang/reflect/Method!|>|(String(age)).R|java/lang/reflect/Method.invoke|(R|<local>/user|)
+        }
+        catch (e: R|kotlin/Exception|) {
+            ^box String(OK)
+        }
+
+        ^box String(Fail)
+    }
+    @R|org/jetbrains/kotlinx/spark/plugin/Sparkify|() public final data class User : R|kotlin/Any| {
+        public constructor(name: R|kotlin/String| = String(John Doe), age: R|kotlin/Int| = Int(25)): R|foo/bar/User| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val name: R|kotlin/String| = R|<local>/name|
+            public get(): R|kotlin/String|
+
+        public final val age: R|kotlin/Int| = R|<local>/age|
+            public get(): R|kotlin/Int|
+
+        public final operator fun component1(): R|kotlin/String|
+
+        public final operator fun component2(): R|kotlin/Int|
+
+        public final fun copy(name: R|kotlin/String| = this@R|foo/bar/User|.R|foo/bar/User.name|, age: R|kotlin/Int| = this@R|foo/bar/User|.R|foo/bar/User.age|): R|foo/bar/User|
+
+    }
+    public final data class NormalUser : R|kotlin/Any| {
+        public constructor(name: R|kotlin/String| = String(John Doe), age: R|kotlin/Int| = Int(25)): R|foo/bar/NormalUser| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val name: R|kotlin/String| = R|<local>/name|
+            public get(): R|kotlin/String|
+
+        public final val age: R|kotlin/Int| = R|<local>/age|
+            public get(): R|kotlin/Int|
+
+        public final operator fun component1(): R|kotlin/String|
+
+        public final operator fun component2(): R|kotlin/Int|
+
+        public final fun copy(name: R|kotlin/String| = this@R|foo/bar/NormalUser|.R|foo/bar/NormalUser.name|, age: R|kotlin/Int| = this@R|foo/bar/NormalUser|.R|foo/bar/NormalUser.age|): R|foo/bar/NormalUser|
+
+    }
