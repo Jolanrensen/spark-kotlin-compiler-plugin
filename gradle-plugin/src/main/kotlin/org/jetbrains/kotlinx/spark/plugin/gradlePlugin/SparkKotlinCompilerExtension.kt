@@ -5,6 +5,7 @@ import org.gradle.api.file.Directory
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
+import org.jetbrains.kotlinx.spark.plugin.Artifacts
 import javax.inject.Inject
 
 abstract class SparkKotlinCompilerExtension @Inject constructor(project: Project) {
@@ -17,7 +18,12 @@ abstract class SparkKotlinCompilerExtension @Inject constructor(project: Project
     val sparkifyAnnotationFqNames: ListProperty<String> = project
         .objects
         .listProperty(String::class.java)
-        .convention(listOf("org.jetbrains.kotlinx.spark.plugin.annotations.Sparkify"))
+        .convention(listOf(Artifacts.defaultSparkifyFqName))
+
+    val columnNameAnnotationFqNames: ListProperty<String> = project
+        .objects
+        .listProperty(String::class.java)
+        .convention(listOf(Artifacts.defaultColumnNameFqName))
 
     val outputDir: DirectoryProperty = project
         .objects

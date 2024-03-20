@@ -60,7 +60,7 @@ class SparkKotlinCompilerGradlePlugin : KotlinCompilerPluginSupportPlugin {
 
         val enabled = extension.enabled.get()
         val sparkifyAnnotationFqNames = extension.sparkifyAnnotationFqNames.get()
-            // TODO
+        val columnNameAnnotationFqNames = extension.columnNameAnnotationFqNames.get()
 
         val outputDir = extension.outputDir.get().dir("$target/$sourceSetName/kotlin")
         kotlinCompilation.defaultSourceSet.kotlin.srcDir(outputDir.asFile)
@@ -69,7 +69,7 @@ class SparkKotlinCompilerGradlePlugin : KotlinCompilerPluginSupportPlugin {
             listOf(
                 SubpluginOption(key = "enabled", value = enabled.toString()),
                 SubpluginOption(key = "sparkifyAnnotationFqNames", value = sparkifyAnnotationFqNames.joinToString()),
-//                SubpluginOption(key = "outputDir", value = outputDir.toString()),
+                SubpluginOption(key = "columnNameAnnotationFqNames", value = columnNameAnnotationFqNames.joinToString()),
             )
         }
     }

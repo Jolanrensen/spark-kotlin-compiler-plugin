@@ -1,12 +1,8 @@
 package org.jetbrains.kotlinx.spark.plugin
 
 import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
-import org.jetbrains.kotlin.compiler.plugin.AbstractCliOption
-import org.jetbrains.kotlin.compiler.plugin.CliOption
-import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor
 import org.jetbrains.kotlin.compiler.plugin.CompilerPluginRegistrar
 import org.jetbrains.kotlin.config.CompilerConfiguration
-import org.jetbrains.kotlin.config.CompilerConfigurationKey
 import org.jetbrains.kotlinx.spark.plugin.ir.SparkifyIrGenerationExtension
 
 open class SparkifyCompilerPluginRegistrar: CompilerPluginRegistrar() {
@@ -21,10 +17,16 @@ open class SparkifyCompilerPluginRegistrar: CompilerPluginRegistrar() {
         if (configuration.get(KEY_ENABLED) != true) return
 
         val sparkifyAnnotationFqNames = configuration.get(KEY_SPARKIFY_ANNOTATION_FQ_NAMES)
-            ?: listOf("org.jetbrains.kotlinx.spark.plugin.Sparkify")
+            ?: listOf(Artifacts.defaultSparkifyFqName)
+
+        val columnNameAnnotationFqNames = configuration.get(KEY_COLUMN_NAME_ANNOTATION_FQ_NAMES)
+            ?: listOf(Artifacts.defaultColumnNameFqName)
 
         IrGenerationExtension.registerExtension(
-            SparkifyIrGenerationExtension(sparkifyAnnotationFqNames)
+            SparkifyIrGenerationExtension(
+                sparkifyAnnotationFqNames = sparkifyAnnotationFqNames,
+                columnNameAnnotationFqNames = columnNameAnnotationFqNames,
+            )
         )
     }
 }

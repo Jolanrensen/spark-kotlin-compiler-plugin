@@ -33,15 +33,21 @@ subprojects {
             val gradlePluginId = "gradle-plugin"
             val pluginAnnotationsId = "plugin-annotations"
 
+            val defaultSparkifyFqName = "org.jetbrains.kotlinx.spark.plugin.annotations.Sparkify"
+            val defaultColumnNameFqName = "org.jetbrains.kotlinx.spark.plugin.annotations.ColumnName"
+
             packageName(groupId)
             className("Artifacts")
 
-            buildConfigField("String", "compilerPluginId", "\"$compilerPluginId\"")
-            buildConfigField("String", "groupId", "\"$groupId\"")
-            buildConfigField("String", "gradlePluginId", "\"$gradlePluginId\"")
-            buildConfigField("String", "currentVersion", "\"$currentVersion\"")
-            buildConfigField("String", "pluginAnnotationsId", "\"$pluginAnnotationsId\"")
-            buildConfigField("String", "compilerPluginArtifactId", "\"$compilerPluginArtifactId\"")
+            buildConfigField("compilerPluginId", compilerPluginId)
+            buildConfigField("groupId", groupId)
+            buildConfigField("gradlePluginId", gradlePluginId)
+            buildConfigField("currentVersion", currentVersion)
+            buildConfigField("pluginAnnotationsId", pluginAnnotationsId)
+            buildConfigField("compilerPluginArtifactId", compilerPluginArtifactId)
+
+            buildConfigField("defaultSparkifyFqName", defaultSparkifyFqName)
+            buildConfigField("defaultColumnNameFqName", defaultColumnNameFqName)
         }
         extensions.findByType<KotlinJvmProjectExtension>()?.apply {
             jvmToolchain(8)
