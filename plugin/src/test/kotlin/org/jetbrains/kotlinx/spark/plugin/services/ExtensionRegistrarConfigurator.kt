@@ -13,7 +13,7 @@ class ExtensionRegistrarConfigurator(testServices: TestServices) : EnvironmentCo
         module: TestModule,
         configuration: CompilerConfiguration,
     ) {
-        val sparkifyAnnotationFqNames = listOf("org.jetbrains.kotlinx.spark.plugin.Sparkify")
+        val sparkifyAnnotationFqNames = listOf("foo.bar.Sparkify")
         IrGenerationExtension.registerExtension(
             SparkifyIrGenerationExtension(sparkifyAnnotationFqNames)
         )

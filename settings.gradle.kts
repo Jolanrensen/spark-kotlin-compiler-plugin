@@ -10,3 +10,4 @@ rootProject.name = "spark-kotlin-compiler-plugin"
 
 include("plugin")
 include("plugin-annotations")
+include("gradle-plugin")

@@ -6,7 +6,10 @@ import org.jetbrains.kotlinx.spark.plugin.runners.AbstractDiagnosticTest
 
 fun main() {
     generateTestGroupSuiteWithJUnit5 {
-        testGroup(testDataRoot = "src/test/resources/testData", testsRoot = "src/test-gen/kotlin") {
+        testGroup(
+            testDataRoot = "/mnt/data/Projects/spark-kotlin-compiler-plugin/plugin/src/test/resources/testData",
+            testsRoot = "/mnt/data/Projects/spark-kotlin-compiler-plugin/plugin/src/test-gen/kotlin",
+        ) {
 //            testClass<AbstractDiagnosticTest> {
 //                model("diagnostics")
 //            }

@@ -14,6 +14,7 @@ import org.jetbrains.kotlin.ir.symbols.UnsafeDuringIrConstructionAPI
 import org.jetbrains.kotlin.ir.types.defaultType
 import org.jetbrains.kotlin.ir.util.constructors
 import org.jetbrains.kotlin.ir.util.hasAnnotation
+import org.jetbrains.kotlin.ir.util.isAnnotationWithEqualFqName
 import org.jetbrains.kotlin.ir.util.parentAsClass
 import org.jetbrains.kotlin.ir.util.primaryConstructor
 import org.jetbrains.kotlin.ir.visitors.IrElementVisitorVoid
@@ -47,12 +48,16 @@ class DataClassPropertyAnnotationGenerator(
         if (declaration.name !in constructorParams.map { it.name })
             return super.visitProperty(declaration)
 
-        if (declaration.getter == null)
-            return super.visitProperty(declaration)
+        val getter = declaration.getter ?: return super.visitProperty(declaration)
 
-        val jvmName = pluginContext.referenceClass(
-            ClassId.topLevel(FqName(JvmName::class.qualifiedName!!))
-        )!!
+        val jvmNameFqName = FqName(JvmName::class.qualifiedName!!)
+
+        // remove previous JvmNames
+        getter.annotations = getter.annotations
+            .filterNot { it.isAnnotationWithEqualFqName(jvmNameFqName) }
+
+        val jvmNameClassId = ClassId(jvmNameFqName.parent(), jvmNameFqName.shortName())
+        val jvmName = pluginContext.referenceClass(jvmNameClassId)!!
 
         val jvmNameConstructor = jvmName
             .constructors
@@ -71,7 +76,8 @@ class DataClassPropertyAnnotationGenerator(
                 value = declaration.name.identifier
             )
         )
+        getter.annotations += annotationCall
 
-        declaration.getter!!.annotations += annotationCall
+        println("Added JvmName annotation to property ${origin.name}.${declaration.name}")
     }
 }

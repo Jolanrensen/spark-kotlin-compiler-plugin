@@ -4,17 +4,13 @@ plugins {
     java
     kotlin("jvm")
     id("com.github.gmazzo.buildconfig")
+    id("com.vanniktech.maven.publish")
 }
 
 val kotlinVersion: String by project.properties
 
-//buildConfig {
-//    packageName(project.group.toString())
-//    buildConfigField("String", "KOTLIN_PLUGIN_ID", "\"${rootProject.extra["kotlin_plugin_id"]}\"")
-//    buildConfigField("String", "KOTLIN_PLUGIN_GROUP", "\"${project.group}\"")
-//    buildConfigField("String", "KOTLIN_PLUGIN_NAME", "\"${project.name}\"")
-//    buildConfigField("String", "KOTLIN_PLUGIN_VERSION", "\"${project.version}\"")
-//}
+group = "org.jetbrains.kotlinx.spark.plugin"
+version = "0.1"
 
 repositories {
     mavenCentral()
@@ -22,11 +18,14 @@ repositories {
 }
 
 sourceSets {
+    main {
+
+    }
     test {
-        java.setSrcDirs(listOf("src/test-gen/kotlin"))
+        kotlin.setSrcDirs(listOf("src/test-gen/kotlin", "src/test/kotlin"))
+        java.setSrcDirs(listOf("src/test-gen/kotlin", "src/test/kotlin"))
     }
 }
-
 
 dependencies {
     "org.jetbrains.kotlin:kotlin-compiler:$kotlinVersion".let {

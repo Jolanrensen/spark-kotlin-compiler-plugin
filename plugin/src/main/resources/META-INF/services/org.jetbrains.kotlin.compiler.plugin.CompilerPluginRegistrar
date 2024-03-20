@@ -1,1 +1,1 @@
-org.jetbrains.kotlinx.spark.plugin.SimplePluginComponentRegistrar
+org.jetbrains.kotlinx.spark.plugin.SparkifyCompilerPluginRegistrar

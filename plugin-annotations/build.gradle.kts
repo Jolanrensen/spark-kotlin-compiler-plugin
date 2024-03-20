@@ -1,6 +1,7 @@
 plugins {
     java
     kotlin("jvm")
+    id("com.vanniktech.maven.publish")
 }
 
 group = "org.jetbrains.kotlinx.spark.plugin"

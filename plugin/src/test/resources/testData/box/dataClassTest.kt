@@ -1,6 +1,6 @@
 package foo.bar
 
-import org.jetbrains.kotlinx.spark.plugin.Sparkify
+annotation class Sparkify
 
 fun box(): String {
     val user = User()
